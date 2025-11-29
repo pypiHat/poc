@@ -3,7 +3,7 @@
   "info": {
     "title": "XSS test",
     "version": "1.0.0",
-    "description": "XSS TEEEEEST</p>javascript:alert(1)<script>alert(12)</script><img src=45555 onerror=console.log(2222222222222222222222222222222222222222)>"
+    "description": "XSS TEEEEEST</p>javascript:alert(1)<script>alert(12)</script><img src/onerror=prompt(8)>"
   },
   "securityDefinitions": {
     "oauth2": {
