@@ -1,0 +1,30 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "XSS img test",
+    "description": "<img src=x onerror=alert('XSS in Swagger UI')>"
+  },
+  "securityDefinitions": {
+    "a": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "https://example.com/auth?next=%22%3E%3Csvg/onload=alert('XSS')%3E",
+      "scopes": {
+        "read": "Read access"
+      }
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Test endpoint",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  }
+}
