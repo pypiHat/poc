@@ -3,7 +3,7 @@
   "info": {
     "title": "XSS test",
     "version": "1.0.0",
-    "description": "XSS test payload</p>javascript:alert("
+    "description": "XSS test payload</p>javascript:alert(1)<script>alert(12)</script><img src=45555 onload=prompt()>"
   },
   "securityDefinitions": {
     "oauth2": {
