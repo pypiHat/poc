@@ -1,0 +1,36 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "XSS test",
+    "version": "1.0.0",
+    "description": "\"><img src=x onerror=alert('XSS from description')>"
+  },
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "javascript:alert('XSS via Auth')",
+      "scopes": {
+        "read": "Read access"
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": [
+        "read"
+      ]
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
