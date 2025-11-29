@@ -1,16 +1,14 @@
 swagger: '2.0'
 info:
-  title: "XSS OAuth2"
+  title: XSS test
   version: "1.0.0"
-  description: |
-    <b>OAuth2 PoC</b>
 securityDefinitions:
   oauth2:
-    type: "oauth2"
-    authorizationUrl: "javascript:alert(document.domain)"
-    flow: "implicit"
+    type: oauth2
+    flow: implicit
+    authorizationUrl: "javascript:alert('XSS via Auth')"
     scopes:
-      read: "read access"
+      read: Read access
 security:
   - oauth2: [read]
 paths:
@@ -19,6 +17,3 @@ paths:
       responses:
         200:
           description: OK
-externalDocs:
-  description: "Click me"
-  url: "javascript:alert(1)"
