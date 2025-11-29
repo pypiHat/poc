@@ -3,13 +3,13 @@
   "info": {
     "title": "XSS test",
     "version": "1.0.0",
-    "description": "\"><img src=x onerror=alert('XSS from description')>"
+    "description": "\"><img src=x onerror=prompt('XSS from description')>"
   },
   "securityDefinitions": {
     "oauth2": {
       "type": "oauth2",
       "flow": "implicit",
-      "authorizationUrl": "javascript:alert('XSS via Auth')",
+      "authorizationUrl": "javascript:prompt('XSS via Auth')",
       "scopes": {
         "read": "Read access"
       }
