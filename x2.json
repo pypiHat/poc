@@ -1,0 +1,36 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "XSS test",
+    "version": "1.0.0",
+    "description": "XSS test payload"
+  },
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "flow": "implicit",
+      "authorizationUrl": "<a href='aaaa' onmouseover=prompt(1)>liiink</a>",
+      "scopes": {
+        "read": "Read access"
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": [
+        "read"
+      ]
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
