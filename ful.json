@@ -1,0 +1,84 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "XSS Fuzz Test",
+    "description": "<img src=x onerror=alert('info')>",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/fuzz": {
+      "get": {
+        "summary": "<svg onload=alert('summary')>",
+        "description": "<img src=x onerror=alert('get_desc')>",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "<img src=x onerror=alert('param_example')>"
+            },
+            "description": "<svg onload=alert('param_desc')>"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "<iframe src=javascript:alert('response_desc')>",
+            "content": {
+              "application/json": {
+                "example": {
+                  "x": "<img src=x onerror=alert('response_example')>"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Fuzz": {
+        "type": "object",
+        "properties": {
+          "f": {
+            "type": "string",
+            "description": "<svg onload=alert('schema_desc')>",
+            "example": "<img src=x onerror=alert('schema_example')>"
+          }
+        },
+        "description": "<iframe src=javascript:alert('schema_desc2')>"
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "javascript:alert('auth')",
+            "scopes": {
+              "read": "<img src=x onerror=alert('scope_desc')>"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": ["read"]
+    }
+  ],
+  "externalDocs": {
+    "description": "<svg onload=alert('externalDocs')>",
+    "url": "javascript:alert('externalDocs_url')"
+  },
+  "x-custom": "<script>alert('x-custom')</script>",
+  "tags": [
+    {
+      "name": "fuzz",
+      "description": "<img src=x onerror=alert('tag_desc')>"
+    }
+  ]
+}
