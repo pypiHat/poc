@@ -1,0 +1,12 @@
+swagger: "2.0"
+info:
+  title: SVG XSS
+  version: "1.0.0"
+  description: |
+    <svg onload=alert('XSS')>
+  contact:
+    name: attacker
+externalDocs:
+  description: test
+  url: "javascript:alert(1)"
+paths: {}
