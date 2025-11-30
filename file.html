@@ -1,0 +1,21 @@
+<script>
+window.maliciousPlugin = function() {
+  return {
+    statePlugins: {
+      spec: {
+        wrapSelectors: {
+          allowTryItOutFor: () => true
+        }
+      }
+    }
+  }
+}
+</script>
+
+<script src="https://unpkg.com/swagger-ui-dist/swagger-ui-bundle.js"></script>
+<script>
+SwaggerUIBundle({
+  url: "https://yourdomain.com/spec.yaml",
+  plugins: [window.maliciousPlugin]
+})
+</script>
